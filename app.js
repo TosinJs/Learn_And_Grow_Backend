@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./db/index');
 require('dotenv').config();
 const { PORT } = process.env
+const userRouter = require('./routes/userRouter');
 
 //connect to the Database
 connectDB();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (request, response, next) => {
     response.json('Welcome to School')
 });
+app.use('/api/auth', userRouter)
 
 //Listen on the port
 const port = process.env.port || PORT;
