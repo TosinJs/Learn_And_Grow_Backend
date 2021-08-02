@@ -8,17 +8,16 @@ const { SECRET } = process.env;
  * Function to create and sign the token
  */
 const createToken = (user, response) => {
-    jwt.sign(
-        {
+    try {
+        const token = jwt.sign({
             id: user._id,
             username: user.username,
             role: user.role
-        }, SECRET, { expiresIn: 3600 }, (err, token) => {
-            if (err) {
-                throw err
-            }
-            response.status(200).json({ status: 200, message: "User Logged In", payload: token})
-        })
+        }, SECRET, { expiresIn: 3600 })
+        return token
+    } catch(error) {
+        throw error
+    }
 }
 
 /**
@@ -37,7 +36,8 @@ module.exports.registerNewUser = (request, response, next) => {
                 User.create({ ...user, password: hash })
                 .then(user => {
                     console.log(user, "User Created")
-                    createToken(user, response)
+                    const token = createToken(user)
+                    response.status(200).json({ status: 200, message: "User Logged In", payload: token})
                 })
                 .catch(error => next(error))
             })
@@ -70,7 +70,8 @@ module.exports.loginUser = (request, response, next) => {
                         throw new Error("Incorrect Password")
                     }
                     console.log("Successfully Logged In")
-                    createToken(user, response)
+                    const token = createToken(user)
+                    response.status(200).json({ status: 200, message: "User Logged In", payload: token})
                 })
                 .catch(error => next(error))
         })
