@@ -1,0 +1,29 @@
+{
+  "name": "Learn_And_Grow_Backend",
+  "version": "1.0.0",
+  "description": "This repository is dedicated to becoming a better software developer one project at a time.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TosinJs/Learn_And_Grow_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TosinJs/Learn_And_Grow_Backend/issues"
+  },
+  "homepage": "https://github.com/TosinJs/Learn_And_Grow_Backend#readme"
+}
