@@ -1,10 +1,12 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
-const app = express()
+const app = express();
 
-app.get("/", (req, res, next) => {
-    return res.status(200).send("Route Working")
+app.use(express.json())
+
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).send("Welcome to My Server, Please Read the docs and use the appropriate endpoints")
 })
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`App Listening on Port ${PORT}`))
+app.listen(PORT, () => console.log(`APp Listening on Port ${PORT}`))
