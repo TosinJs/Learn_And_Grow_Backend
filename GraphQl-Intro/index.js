@@ -1,17 +1,18 @@
 const { ApolloServer } = require("apollo-server");
-const { categories, products } = require("./data");
+const { categories, products, reviews } = require("./data");
 const { typeDefs } = require("./model/Schema");
 const { Category } = require("./Resolvers/CategoryResolver");
+const { Mutation } = require("./Resolvers/Mutation");
 const { Product } = require("./Resolvers/ProductResolver");
 const { Query } = require("./Resolvers/Query");
 
 const server = new ApolloServer({
     typeDefs,
     resolvers: {
-        Query, Category, Product
+        Query, Category, Product, Mutation
     },
-    context: { categories, products }
-});
+    context: { categories, products, reviews }
+}); 
 const startServer = async () => {
     try {
         const { url } = await server.listen();
